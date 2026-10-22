@@ -6,8 +6,10 @@ import {
   HP_BASE,
   HP_BONUS_MAX,
   HP_REGEN_PER_SEC_AT_BASE,
+  ANALOG_IDLE,
   INSOMNIA_FLOOR,
   INSOMNIA_GROWTH,
+  INSOMNIA_MAX_DAYS,
   REGEN_K,
   REGEN_PER_SEC_BASE,
   RESIST_CAP,
@@ -18,6 +20,7 @@ import {
   STRENGTH_K,
   TICKS_PER_SECOND,
   VITALITY_K,
+  WALK_MAX_REGEN_SHARE,
 } from "./config.js";
 
 export function scale(bonus, k) {
@@ -28,7 +31,7 @@ export function scale(bonus, k) {
 }
 
 export function unrestMultiplier(days) {
-  const d = Math.max(0, days);
+  const d = Math.min(INSOMNIA_MAX_DAYS, Math.max(0, days));
   return INSOMNIA_FLOOR + (1 - INSOMNIA_FLOOR) * (1 / (1 + INSOMNIA_GROWTH * d));
 }
 
@@ -116,7 +119,22 @@ export function derivedStats(bonuses, food, insomniaDays, currentStamina) {
   };
 }
 
-export function gaitCostPerTick(gait, moveCostMult) {
+/**
+ * Crouch / walk cost from stick or key strength. Keyboard is always full
+ * strength; a console stick scales smoothly from crouch cost to walk cost.
+ * Capped below regen so walking always recovers stamina.
+ */
+export function walkCostPerTick(gait, mag, moveCostMult, regenPerTick) {
+  const t = Math.min(1, Math.max(0, (mag - ANALOG_IDLE) / (1 - ANALOG_IDLE)));
+  const top = gait === "sneak" ? COST.sneak : COST.walk;
+  const base = COST.sneak + (top - COST.sneak) * t;
+  return Math.min(base * moveCostMult, regenPerTick * WALK_MAX_REGEN_SHARE);
+}
+
+export function gaitCostPerTick(gait, moveCostMult, mag = 1, regenPerTick = 0) {
+  if (gait === "walk" || gait === "sneak") {
+    return walkCostPerTick(gait, mag, moveCostMult, regenPerTick);
+  }
   const base =
     gait === "swimSprint"
       ? COST.swimSprint
@@ -126,10 +144,6 @@ export function gaitCostPerTick(gait, moveCostMult) {
           ? COST.wade
           : gait === "sprint"
             ? COST.sprint
-            : gait === "run"
-              ? COST.run
-              : gait === "walk"
-                ? COST.walk
-                : 0;
+            : 0;
   return base * moveCostMult;
 }

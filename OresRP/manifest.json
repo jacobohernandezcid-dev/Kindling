@@ -4,7 +4,7 @@
     "name": "Kindling Ores",
     "description": "Kindling - ore textures for tin, slabs, river gold, rough gems.",
     "uuid": "ae5f7b9d-4c6e-4d8f-bf1a-5c7d9e1f3a4b",
-    "version": [1, 1, 0],
+    "version": [1, 1, 1],
     "min_engine_version": [1, 21, 0]
   },
   "modules": [
@@ -12,7 +12,7 @@
       "description": "Kindling Ores resources",
       "type": "resources",
       "uuid": "bf6a8c0e-5d7f-4e9a-c02b-6d8e0f2a4b5c",
-      "version": [1, 1, 0]
+      "version": [1, 1, 1]
     }
   ],
   "metadata": {

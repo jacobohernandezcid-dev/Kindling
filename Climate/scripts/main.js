@@ -1,11 +1,19 @@
 import { system, world, GameMode } from "@minecraft/server";
-import { TICK_INTERVAL, DP } from "./config.js";
-import { num, setNum, tickClimate } from "./climate.js";
 import {
-  applyTimeWarp,
+  COLD_DAMAGE_AT,
+  COLD_SLOW_AT,
+  DP,
+  HEAT_HUNGER_AT,
+  HEAT_SLOW_AT,
+  TICK_INTERVAL,
+} from "./config.js";
+import { insomniaDays, num, setNum, tickClimate } from "./climate.js";
+import { sharedExists, SHARED } from "./shared.js";
+import {
   seasonState,
   SEASON_LABEL,
   tryAutumnLeaves,
+  trySpringMelt,
   tryWinterSnow,
 } from "./seasons.js";
 
@@ -56,7 +64,34 @@ function maybeAnnounceSeason(player, season) {
   }
 }
 
-let warpOwner = null;
+/**
+ * Kindling Body draws heat / cold next to its stamina bar. Without Body,
+ * show a plain action-bar warning instead.
+ */
+function showFallbackHud(player) {
+  if (sharedExists(SHARED.insomnia)) {
+    return;
+  }
+  const cold = num(player, DP.cold);
+  const heat = num(player, DP.heat);
+  let text = "";
+  if (cold >= COLD_DAMAGE_AT) {
+    text = "§bFreezing";
+  } else if (cold >= COLD_SLOW_AT) {
+    text = "§3Cold";
+  } else if (heat >= HEAT_SLOW_AT) {
+    text = "§cOverheating";
+  } else if (heat >= HEAT_HUNGER_AT) {
+    text = "§6Hot";
+  }
+  if (text) {
+    try {
+      player.onScreenDisplay.setActionBar(text);
+    } catch {
+      /* ignore */
+    }
+  }
+}
 
 system.runInterval(() => {
   let time = 0;
@@ -69,16 +104,6 @@ system.runInterval(() => {
   const season = seasonState();
   const players = world.getAllPlayers();
 
-  // One time-warp per tick (host/first overworld player)
-  if (players.length) {
-    const warpPlayer =
-      players.find((p) => p.dimension.id === "minecraft:overworld") || players[0];
-    if (warpPlayer && (!warpOwner || warpOwner === warpPlayer.id)) {
-      warpOwner = warpPlayer.id;
-      time = applyTimeWarp(time, season.name);
-    }
-  }
-
   for (const player of players) {
     greet(player, season);
     maybeAnnounceSeason(player, season);
@@ -89,7 +114,9 @@ system.runInterval(() => {
     }
     try {
       tickClimate(player, time, season.name);
+      showFallbackHud(player);
       tryWinterSnow(player, season.name);
+      trySpringMelt(player, season.name);
       tryAutumnLeaves(player, season.name);
     } catch (e) {
       console.warn("[Kindling Climate]", e);
@@ -99,7 +126,6 @@ system.runInterval(() => {
 
 world.afterEvents.worldLoad.subscribe(() => {
   console.warn("[Kindling Climate] seasons cycle loaded");
-  warpOwner = null;
 });
 
 world.beforeEvents.chatSend.subscribe((event) => {
@@ -116,7 +142,7 @@ world.beforeEvents.chatSend.subscribe((event) => {
   const p = event.sender;
   system.run(() => {
     const season = seasonState();
-    const insomnia = num(p, DP.insomniaDays, 0);
+    const insomnia = insomniaDays(p);
     p.sendMessage(
       `§6Climate §eheat §f${num(p, DP.heat).toFixed(0)}  §ecold §f${num(p, DP.cold).toFixed(0)}`
     );

@@ -3,10 +3,10 @@ import {
   DAY_TICKS,
   DAYS_PER_SEASON,
   LEAF_CHANCE,
+  MELT_TRIES,
   SEASONS,
   SNOW_CHANCE,
   SNOW_RADIUS,
-  TIME_WARP,
 } from "./config.js";
 import { canSeeSky, isColdBiome, isHotBiome, biomeIdAt } from "./climate.js";
 
@@ -35,30 +35,6 @@ export function seasonState(dayIndex = worldDayIndex()) {
     daysPerSeason: DAYS_PER_SEASON,
     worldDay: dayIndex,
   };
-}
-
-export function applyTimeWarp(timeOfDay, seasonName) {
-  const warp = TIME_WARP[seasonName] || TIME_WARP.spring;
-  const day = timeOfDay >= 0 && timeOfDay < 12000;
-  const add = day ? warp.day : warp.night;
-  if (!add) {
-    return timeOfDay;
-  }
-  let next = timeOfDay + add;
-  while (next < 0) {
-    next += DAY_TICKS;
-  }
-  next = next % DAY_TICKS;
-  try {
-    world.setTimeOfDay(next);
-  } catch {
-    try {
-      world.getDimension("overworld").runCommand(`time set ${Math.floor(next)}`);
-    } catch {
-      /* ignore */
-    }
-  }
-  return next;
 }
 
 function isTemperateBiome(id) {
@@ -152,6 +128,38 @@ export function tryWinterSnow(player, seasonName) {
   }
 }
 
+/** In spring, melt winter's snow layers in temperate biomes near the player. */
+export function trySpringMelt(player, seasonName) {
+  if (seasonName !== "spring") {
+    return;
+  }
+  const dim = player.dimension;
+  if (dim.id !== "minecraft:overworld") {
+    return;
+  }
+  const loc = player.location;
+  const r = SNOW_RADIUS * 3;
+  for (let i = 0; i < MELT_TRIES; i++) {
+    const x = Math.floor(loc.x) + Math.floor(Math.random() * (r * 2 + 1)) - r;
+    const z = Math.floor(loc.z) + Math.floor(Math.random() * (r * 2 + 1)) - r;
+    try {
+      if (!isTemperateBiome(biomeIdAt(dim, { x, y: loc.y, z }))) {
+        continue;
+      }
+      const ground = topSolidY(dim, x, z, loc.y);
+      if (ground == null) {
+        continue;
+      }
+      const b = dim.getBlock({ x, y: ground + 1, z });
+      if (b?.typeId === "minecraft:snow_layer") {
+        b.setType("minecraft:air");
+      }
+    } catch {
+      /* unloaded */
+    }
+  }
+}
+
 /** Autumn leaf-fall particles near the player. */
 export function tryAutumnLeaves(player, seasonName) {
   if (seasonName !== "autumn") {
@@ -169,21 +177,7 @@ export function tryAutumnLeaves(player, seasonName) {
   const y = loc.y + 2 + Math.random() * 4;
   const z = loc.z + (Math.random() * 6 - 3);
   try {
-    dim.spawnParticle("minecraft:crop_growth_emitter", { x, y, z });
-  } catch {
-    try {
-      dim.spawnParticle("minecraft:villager_happy", { x, y, z });
-    } catch {
-      /* ignore */
-    }
-  }
-  // Prefer leaf-looking flakes when possible
-  try {
-    dim.spawnParticle("minecraft:falling_dust_top_snow_particle", {
-      x,
-      y: y + 1,
-      z,
-    });
+    dim.spawnParticle("minecraft:falling_dust_red_sand_particle", { x, y, z });
   } catch {
     /* ignore */
   }

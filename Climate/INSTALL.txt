@@ -9,11 +9,13 @@ Requires
 
 Seasons (7 Minecraft days each)
 -------------------------------
-- **Spring** — mild
-- **Summer** — longer days (time warp), more heat; mild warmth outside deserts
-- **Autumn** — longer nights a bit; leaf-fall particles; colder rain
-- **Winter** — longer nights; more cold; snow layers in temperate + cold biomes
+- **Spring** — mild; winter snow melts in temperate biomes
+- **Summer** — more heat; mild warmth outside deserts
+- **Autumn** — leaf-fall particles; colder rain
+- **Winter** — more cold; snow layers in temperate + cold biomes
   (not deserts). Temperate biomes get night chill.
+
+Day and night keep vanilla length. Each season day starts at sunrise.
 
 Also
 ----

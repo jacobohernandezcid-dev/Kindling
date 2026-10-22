@@ -1,16 +1,20 @@
 import * as mc from "@minecraft/server";
 import {
   ANALOG_IDLE,
-  ANALOG_WALK,
   BOAT_TYPES,
   BURST,
   CART_TYPES,
+  COLD_LEVELS,
   COST,
   DAY_TICKS,
   DP,
   EXHAUSTED_MOVE_SCALE,
+  HEAT_LEVELS,
   HP_BASE,
   IDLE_REGEN_MULT,
+  INSOMNIA_MAX_DAYS,
+  MORNING_END,
+  MORNING_START,
   STARVE_DAMAGE,
   VANILLA_MOVE,
   VEHICLE_MOVE_SPEED,
@@ -28,6 +32,7 @@ import {
   tickDanger,
 } from "./danger.js";
 import { attachCommands } from "./commands.js";
+import { readShared, SHARED, writeShared } from "./shared.js";
 
 const world = mc.world;
 const system = mc.system;
@@ -224,13 +229,39 @@ function onFootGait(player, mag) {
   if (shallow) {
     return mag > ANALOG_IDLE ? "wade" : "idle";
   }
+  if (mag <= ANALOG_IDLE) {
+    return "idle";
+  }
   if (player.isSprinting) {
     return "sprint";
   }
-  if (player.isSneaking || mag < ANALOG_WALK) {
-    return mag > ANALOG_IDLE ? "walk" : "idle";
+  return player.isSneaking ? "sneak" : "walk";
+}
+
+function isClimbingUp(player) {
+  try {
+    if (!player.isClimbing) {
+      return false;
+    }
+    return player.getVelocity().y > 0.02;
+  } catch {
+    return false;
   }
-  return mag > ANALOG_IDLE ? "run" : "idle";
+}
+
+function isBlocking(player) {
+  try {
+    if (!player.isSneaking) {
+      return false;
+    }
+    const eq = player.getComponent("minecraft:equippable");
+    return (
+      eq?.getEquipment("Offhand")?.typeId === "minecraft:shield" ||
+      eq?.getEquipment("Mainhand")?.typeId === "minecraft:shield"
+    );
+  } catch {
+    return false;
+  }
 }
 
 function spendForTick(player, stats) {
@@ -267,7 +298,13 @@ function spendForTick(player, stats) {
   } else {
     gait = onFootGait(player, mag);
     if (gait !== "idle") {
-      cost += gaitCostPerTick(gait, stats.moveCostMult);
+      cost += gaitCostPerTick(gait, stats.moveCostMult, mag, stats.regenPerTick);
+    }
+    if (isClimbingUp(player)) {
+      cost += COST.climb * stats.moveCostMult;
+    }
+    if (isBlocking(player)) {
+      cost += COST.shield * stats.moveCostMult;
     }
   }
 
@@ -278,7 +315,7 @@ function spendForTick(player, stats) {
   m.wasJumping = jumping;
 
   if (m.drawing) {
-    cost += COST.run * stats.moveCostMult;
+    cost += COST.bowDraw * stats.moveCostMult;
   }
 
   if (m.miningTicks > 0 && !ride && !player.isGliding) {
@@ -372,11 +409,49 @@ function pad2(n) {
   return n < 10 ? `0${n}` : `${n}`;
 }
 
-function staminaToken(current, available, max) {
+function staminaToken(current, available, max, climateTag = "") {
   const cap = Math.max(1, max);
   const cur = Math.max(0, Math.min(20, Math.round((current / cap) * 20)));
   const avail = Math.max(cur, Math.min(20, Math.round((available / cap) * 20)));
-  return `k${pad2(20 - cur)}a${pad2(20 - avail)}`;
+  return `k${pad2(20 - cur)}a${pad2(20 - avail)}${climateTag}`;
+}
+
+function levelOf(value, levels) {
+  let n = 0;
+  for (const at of levels) {
+    if (value >= at) {
+      n++;
+    }
+  }
+  return n;
+}
+
+/** "", h1-h3 or c1-c3. Cold wins when both are set. */
+function climateTag(player) {
+  const c = levelOf(readShared(player, SHARED.cold), COLD_LEVELS);
+  if (c > 0) {
+    return `c${c}`;
+  }
+  const h = levelOf(readShared(player, SHARED.heat), HEAT_LEVELS);
+  return h > 0 ? `h${h}` : "";
+}
+
+/** Publish Body numbers for other Kindling packs (once a second). */
+function shareBody(player, m) {
+  const bonus = bonusesOf(player);
+  const next = [
+    num(player, DP.insomniaDays),
+    Math.round(Math.min(0.9, Math.max(0, bonus.heatRes)) * 100),
+    Math.round(Math.min(0.9, Math.max(0, bonus.coldRes)) * 100),
+  ];
+  const prev = m.shared;
+  if (prev && prev[0] === next[0] && prev[1] === next[1] && prev[2] === next[2]) {
+    return;
+  }
+  writeShared(player, SHARED.insomnia, next[0]);
+  writeShared(player, SHARED.heatRes, next[1]);
+  writeShared(player, SHARED.coldRes, next[2]);
+  m.shared = next;
 }
 
 function dangerTag(danger) {
@@ -399,23 +474,31 @@ function worldDay() {
   return Math.floor(tickClock / DAY_TICKS);
 }
 
+function isMorning() {
+  try {
+    const t = world.getTimeOfDay();
+    return t >= MORNING_START || t < MORNING_END;
+  } catch {
+    return false;
+  }
+}
+
+/** Only waking up in the morning (the night was slept through) counts as rest. */
 function tickInsomnia(player, m) {
   const day = worldDay();
-  if (player.isSleeping) {
-    if (!m.wasSleeping) {
-      setNum(player, DP.insomniaDays, 0);
-      setNum(player, DP.lastSleepDay, day);
-      m.danger = clampDanger(m.danger - DANGER_SLEEP_CUT);
-      setNum(player, DP.danger, m.danger);
+  const sleeping = !!player.isSleeping;
+  if (!sleeping && m.wasSleeping && isMorning()) {
+    setNum(player, DP.insomniaDays, 0);
+    setNum(player, DP.lastSleepDay, day);
+    m.danger = clampDanger(m.danger - DANGER_SLEEP_CUT);
+    setNum(player, DP.danger, m.danger);
+    try {
+      player.sendMessage("§7You feel rested.");
+    } catch {
+      /* ignore */
     }
-    m.wasSleeping = true;
-  } else {
-    if (m.wasSleeping) {
-      setNum(player, DP.insomniaDays, 0);
-      setNum(player, DP.lastSleepDay, day);
-    }
-    m.wasSleeping = false;
   }
+  m.wasSleeping = sleeping;
 
   if (m.lastDay < 0) {
     m.lastDay = day;
@@ -427,7 +510,11 @@ function tickInsomnia(player, m) {
   if (day > m.lastDay) {
     const lastSleep = num(player, DP.lastSleepDay, day);
     if (lastSleep < day) {
-      setNum(player, DP.insomniaDays, num(player, DP.insomniaDays) + (day - m.lastDay));
+      setNum(
+        player,
+        DP.insomniaDays,
+        Math.min(INSOMNIA_MAX_DAYS, num(player, DP.insomniaDays) + (day - m.lastDay))
+      );
     }
     m.lastDay = day;
   }
@@ -504,9 +591,16 @@ function tickPlayer(player) {
     }
   }
 
+  if (tickClock % 10 === 0 || m.climateTag === undefined) {
+    m.climateTag = climateTag(player);
+  }
+  if (tickClock % 20 === 0) {
+    shareBody(player, m);
+  }
+
   try {
     player.onScreenDisplay.setActionBar(
-      staminaToken(m.stamina, stats.caps.available, stats.caps.max)
+      staminaToken(m.stamina, stats.caps.available, stats.caps.max, m.climateTag)
     );
   } catch {
     /* ignore */
@@ -615,10 +709,8 @@ try {
       }
     }
     if (!ev.initialSpawn) {
-      setNum(player, DP.insomniaDays, 0);
-      setNum(player, DP.lastSleepDay, worldDay());
       const food = hungerFoodFraction(player);
-      const stats = derivedStats(bonusesOf(player), food, 0, 100);
+      const stats = derivedStats(bonusesOf(player), food, num(player, DP.insomniaDays), 100);
       m.stamina = stats.caps.available;
       setNum(player, DP.stamina, m.stamina);
     } else if (num(player, DP.stamina, -1) < 0) {
@@ -778,6 +870,63 @@ try {
 try {
   world.afterEvents.playerBreakBlock.subscribe((ev) => {
     spendMine(ev.player, BURST.breakBlock);
+  });
+} catch {
+  /* API missing */
+}
+
+function spendBurst(player, burst) {
+  const m = mem(player);
+  const food = hungerFoodFraction(player);
+  const stats = derivedStats(bonusesOf(player), food, num(player, DP.insomniaDays), m.stamina);
+  m.stamina = clampStamina(player, stats, m.stamina - burst * stats.moveCostMult);
+  setNum(player, DP.stamina, m.stamina);
+}
+
+try {
+  world.afterEvents.playerPlaceBlock.subscribe((ev) => {
+    if (isPlayable(ev.player)) {
+      spendBurst(ev.player, BURST.placeBlock);
+    }
+  });
+} catch {
+  /* API missing */
+}
+
+function isToolWork(itemId, blockId) {
+  if (itemId.endsWith("_hoe")) {
+    return /grass_block|dirt|rooted_dirt/.test(blockId);
+  }
+  if (itemId.endsWith("_axe")) {
+    return /_log|_wood|_stem|_hyphae|bamboo_block/.test(blockId) && !blockId.includes("stripped");
+  }
+  if (itemId.endsWith("_shovel")) {
+    return /grass_block|dirt|podzol|mycelium/.test(blockId);
+  }
+  return false;
+}
+
+try {
+  world.beforeEvents.playerInteractWithBlock.subscribe((ev) => {
+    if (ev.isFirstEvent === false) {
+      return;
+    }
+    const itemId = ev.itemStack?.typeId ?? "";
+    const blockId = ev.block?.typeId ?? "";
+    if (!isToolWork(itemId, blockId)) {
+      return;
+    }
+    const player = ev.player;
+    const am = memory.get(player.id);
+    if (am && am.stamina <= 0.0001) {
+      ev.cancel = true;
+      return;
+    }
+    system.run(() => {
+      if (entityValid(player) && isPlayable(player)) {
+        spendBurst(player, BURST.toolUse);
+      }
+    });
   });
 } catch {
   /* API missing */

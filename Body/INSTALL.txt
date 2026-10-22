@@ -40,14 +40,20 @@ What you should feel
 - A second XP-style bar sits above the real XP bar (stamina). Hearts
   and hunger sit above that. Bright yellow = remaining, dark yellow =
   spent, black = hunger-locked.
-- Walk / analog nudge recovers slowly. Keyboard W is a run (drains).
+- Crouching and normal walking recover stamina slowly (crouch more than
+  walk). On console the cost scales with how far the stick is pushed.
+  Walking always recovers, even with heavy insomnia.
 - Wading shallow water (feet on the bottom) costs more than land, less than a swim.
-- Sprint, swim, jump, mine, and hit drain faster than regen.
+- Sprint, swim, jump, mine, hit, climb, shield block, and bow draw drain
+  faster than regen. Placing blocks and tool work (tilling, stripping
+  logs, paths) cost a little each.
 - Food above 75%: no lock. Empty food: at most 75% locked (25% left).
 - Hearts do not drip from hunger. At 0 food, ½ heart per Minecraft day.
 - Hearts regen only when the food bar is full and stamina is full.
 - Skip nights or take insomnia: strength, speed, stamina max, and regen
-  drop (never to 0). Phantoms are turned off by this pack.
+  drop (never to 0). It stops getting worse after 10 sleepless days.
+  Only a full night's sleep (waking in the morning) clears it. Lying
+  down briefly or dying does not. Phantoms are turned off by this pack.
 - Stamina 0: crawl, no mine/attack, sink in water.
 - Danger rises when you kill (villagers more than animals). Villagers,
   traders, and passive mobs keep away (around danger 50). At 75+

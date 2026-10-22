@@ -32,6 +32,14 @@ export const RESIST_CAP = 0.9;
 
 export const INSOMNIA_FLOOR = 0.45;
 export const INSOMNIA_GROWTH = 0.4;
+/** Insomnia stops getting worse after this many sleepless days. */
+export const INSOMNIA_MAX_DAYS = 10;
+/**
+ * A good night's sleep: the player must wake inside this window of the
+ * day (vanilla morning after a skipped night is tick 0).
+ */
+export const MORNING_START = 23500;
+export const MORNING_END = 1000;
 
 export const HP_BASE = 20;
 export const HP_BONUS_MAX = 10;
@@ -42,11 +50,18 @@ export const STARVE_INTERVAL_TICKS = 24000;
 export const TICKS_PER_SECOND = 20;
 export const DAY_TICKS = 24000;
 
-/** Per-tick stamina costs at agility 0. Regen is REGEN_PER_SEC_BASE / 20 ≈ 0.05. */
+/** Per-tick stamina costs at agility 0. Regen is REGEN_PER_SEC_BASE / 20 = 0.06. */
 export const COST = {
-  walk: 0.02,
-  run: 0.08,
+  /** Crouch and normal walk always stay under regen (see WALK_MAX_REGEN_SHARE). */
+  sneak: 0.01,
+  walk: 0.025,
   sprint: 0.18,
+  /** Moving up a ladder, vine, or scaffolding. */
+  climb: 0.1,
+  /** Holding a shield up (crouching with a shield). */
+  shield: 0.07,
+  /** Drawing a bow or crossbow, or charging a trident. */
+  bowDraw: 0.09,
   /** Feet on the bottom in water. More than land run, less than swim. */
   wade: 0.12,
   swim: 0.16,
@@ -65,10 +80,25 @@ export const BURST = {
   hitBlock: 5,
   breakBlock: 8,
   fireworkUse: 2,
+  placeBlock: 1.5,
+  /** Tilling, stripping logs, making paths. */
+  toolUse: 3,
 };
 
+/**
+ * Crouch and walk cost at most this share of current regen, so walking
+ * recovers stamina even with insomnia or no agility.
+ */
+export const WALK_MAX_REGEN_SHARE = 0.6;
+
+/**
+ * Climate HUD levels (heat / cold from Kindling Climate, 0-100).
+ * Must match the h1-h3 / c1-c3 labels in tools/gen-hud.mjs.
+ */
+export const HEAT_LEVELS = [15, 35, 70];
+export const COLD_LEVELS = [15, 30, 75];
+
 export const ANALOG_IDLE = 0.05;
-export const ANALOG_WALK = 0.65;
 export const VEHICLE_MOVE_SPEED = 0.04;
 export const EXHAUSTED_MOVE_SCALE = 0.25;
 export const VANILLA_MOVE = 0.1;

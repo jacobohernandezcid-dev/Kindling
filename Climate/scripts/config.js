@@ -1,6 +1,7 @@
 /**
  * Tunables for Kindling Climate (+ seasons cycle).
- * Soft-reads Body: np:heat_res, np:cold_res, np:insomnia_days.
+ * Soft-reads Body through shared scoreboards (see shared.js):
+ * insomnia days and heat / cold resistance.
  */
 
 export const TICK_INTERVAL = 40; // 2 seconds
@@ -32,14 +33,6 @@ export const CAMPFIRE_RANGE = 5;
 export const DAYS_PER_SEASON = 7;
 export const SEASONS = ["spring", "summer", "autumn", "winter"];
 
-/** Per climate tick, add this many day-ticks (negative = stretch). */
-export const TIME_WARP = {
-  spring: { day: 0, night: 0 },
-  summer: { day: -14, night: 18 },
-  autumn: { day: 6, night: -6 },
-  winter: { day: 22, night: -16 },
-};
-
 /** Season multipliers on heat/cold build */
 export const SEASON_HEAT_MULT = {
   spring: 0.9,
@@ -67,14 +60,13 @@ export const INSOMNIA_COLD_CAP = 1.6;
 /** Winter snow in temperate biomes */
 export const SNOW_CHANCE = 0.22;
 export const SNOW_RADIUS = 3;
+/** Spring melt of seasonal snow in temperate biomes (tries per climate tick). */
+export const MELT_TRIES = 3;
 
 /** Autumn leaf particles */
 export const LEAF_CHANCE = 0.4;
 
 export const DP = {
-  heatRes: "np:heat_res",
-  coldRes: "np:cold_res",
-  insomniaDays: "np:insomnia_days",
   heat: "kl:heat",
   cold: "kl:cold",
   lastSeason: "kl:last_season",

@@ -4,7 +4,7 @@
     "name": "Kindling Climate",
     "description": "Kindling - seasons, heat, cold.",
     "uuid": "d0f1a3b5-6e7a-4b8c-cd4e-9f1a3b5c7d8e",
-    "version": [1, 1, 0],
+    "version": [1, 2, 0],
     "min_engine_version": [1, 21, 0]
   },
   "modules": [
@@ -12,7 +12,7 @@
       "description": "Kindling Climate resources",
       "type": "resources",
       "uuid": "e1a2b4c6-7f8b-4c9d-de5f-0a2b4c6d8e9f",
-      "version": [1, 1, 0]
+      "version": [1, 2, 0]
     }
   ],
   "metadata": {
