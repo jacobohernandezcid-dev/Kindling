@@ -1,0 +1,74 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:pocket_pick"
+    },
+    "features": [
+      [
+        "kindling:pocket_coal_single",
+        24
+      ],
+      [
+        "kindling:pocket_coal_small",
+        8
+      ],
+      [
+        "kindling:pocket_iron_single",
+        24
+      ],
+      [
+        "kindling:pocket_iron_small",
+        8
+      ],
+      [
+        "kindling:pocket_copper_single",
+        21
+      ],
+      [
+        "kindling:pocket_copper_small",
+        7
+      ],
+      [
+        "kindling:pocket_tin_single",
+        15
+      ],
+      [
+        "kindling:pocket_tin_small",
+        5
+      ],
+      [
+        "kindling:pocket_gold_single",
+        12
+      ],
+      [
+        "kindling:pocket_gold_small",
+        4
+      ],
+      [
+        "kindling:pocket_redstone_single",
+        12
+      ],
+      [
+        "kindling:pocket_redstone_small",
+        4
+      ],
+      [
+        "kindling:pocket_lapis_single",
+        6
+      ],
+      [
+        "kindling:pocket_lapis_small",
+        2
+      ],
+      [
+        "kindling:pocket_diamond_single",
+        3
+      ],
+      [
+        "kindling:pocket_diamond_small",
+        1
+      ]
+    ]
+  }
+}

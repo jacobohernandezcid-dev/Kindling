@@ -1,0 +1,58 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_gold_redstone_huge"
+    },
+    "features": [
+      [
+        "kindling:deposit_gold_redstone_e_flat_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_e_down_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_e_up_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_s_flat_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_s_down_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_s_up_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_se_flat_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_se_down_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_se_up_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_ne_flat_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_ne_down_huge",
+        1
+      ],
+      [
+        "kindling:deposit_gold_redstone_ne_up_huge",
+        1
+      ]
+    ]
+  }
+}

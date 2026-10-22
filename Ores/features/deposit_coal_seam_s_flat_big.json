@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:aggregate_feature": {
+    "description": {
+      "identifier": "kindling:deposit_coal_seam_s_flat_big"
+    },
+    "features": [
+      "kindling:deposit_coal_seam_s_flat_seg0",
+      "kindling:deposit_coal_seam_s_flat_seg1",
+      "kindling:deposit_coal_seam_s_flat_seg2",
+      "kindling:deposit_coal_seam_s_flat_seg3",
+      "kindling:deposit_coal_seam_s_flat_seg4",
+      "kindling:deposit_coal_seam_s_flat_seg5",
+      "kindling:deposit_coal_seam_s_flat_seg6",
+      "kindling:deposit_coal_seam_s_flat_seg7"
+    ]
+  }
+}

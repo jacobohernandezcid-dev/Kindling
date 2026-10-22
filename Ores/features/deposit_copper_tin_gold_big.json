@@ -1,0 +1,58 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_copper_tin_gold_big"
+    },
+    "features": [
+      [
+        "kindling:deposit_copper_tin_gold_e_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_e_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_e_up_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_s_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_s_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_s_up_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_se_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_se_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_se_up_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_ne_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_ne_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_ne_up_big",
+        1
+      ]
+    ]
+  }
+}

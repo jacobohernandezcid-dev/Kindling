@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_coal_seam"
+    },
+    "features": [
+      [
+        "kindling:deposit_coal_seam_big",
+        7
+      ],
+      [
+        "kindling:deposit_coal_seam_huge",
+        3
+      ]
+    ]
+  }
+}

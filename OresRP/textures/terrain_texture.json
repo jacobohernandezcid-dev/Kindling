@@ -1,0 +1,35 @@
+{
+  "resource_pack_name": "kindling_ores",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "tin_ore": {
+      "textures": "textures/blocks/tin_ore"
+    },
+    "deepslate_tin_ore": {
+      "textures": "textures/blocks/deepslate_tin_ore"
+    },
+    "auriferous_gravel": {
+      "textures": "textures/blocks/auriferous_gravel"
+    },
+    "gold_flecked_netherrack": {
+      "textures": "textures/blocks/gold_flecked_netherrack"
+    },
+    "iron_ore_slab": {
+      "textures": "textures/blocks/iron_ore_slab"
+    },
+    "copper_ore_slab": {
+      "textures": "textures/blocks/copper_ore_slab"
+    },
+    "coal_ore_slab": {
+      "textures": "textures/blocks/coal_ore_slab"
+    },
+    "gold_ore_slab": {
+      "textures": "textures/blocks/gold_ore_slab"
+    },
+    "tin_ore_slab": {
+      "textures": "textures/blocks/tin_ore_slab"
+    }
+  }
+}

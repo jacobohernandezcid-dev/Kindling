@@ -1,0 +1,43 @@
+{
+  "format_version": [
+    1,
+    1,
+    0
+  ],
+  "kindling:tin_ore": {
+    "sound": "stone",
+    "textures": "tin_ore"
+  },
+  "kindling:deepslate_tin_ore": {
+    "sound": "stone",
+    "textures": "deepslate_tin_ore"
+  },
+  "kindling:auriferous_gravel": {
+    "sound": "gravel",
+    "textures": "auriferous_gravel"
+  },
+  "kindling:gold_flecked_netherrack": {
+    "sound": "netherrack",
+    "textures": "gold_flecked_netherrack"
+  },
+  "kindling:iron_ore_slab": {
+    "sound": "stone",
+    "textures": "iron_ore_slab"
+  },
+  "kindling:copper_ore_slab": {
+    "sound": "stone",
+    "textures": "copper_ore_slab"
+  },
+  "kindling:coal_ore_slab": {
+    "sound": "stone",
+    "textures": "coal_ore_slab"
+  },
+  "kindling:gold_ore_slab": {
+    "sound": "stone",
+    "textures": "gold_ore_slab"
+  },
+  "kindling:tin_ore_slab": {
+    "sound": "stone",
+    "textures": "tin_ore_slab"
+  }
+}

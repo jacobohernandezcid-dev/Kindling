@@ -1,0 +1,13 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:aggregate_feature": {
+    "description": {
+      "identifier": "kindling:deposit_copper_tin_gold_pod_l_3"
+    },
+    "features": [
+      "kindling:deposit_copper_tin_gold_acc_tin",
+      "kindling:deposit_copper_tin_gold_acc_gold",
+      "kindling:deposit_copper_tin_gold_host_l"
+    ]
+  }
+}

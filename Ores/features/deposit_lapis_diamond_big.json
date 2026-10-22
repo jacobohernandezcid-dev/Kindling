@@ -1,0 +1,58 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_lapis_diamond_big"
+    },
+    "features": [
+      [
+        "kindling:deposit_lapis_diamond_e_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_e_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_e_up_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_s_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_s_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_s_up_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_se_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_se_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_se_up_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_ne_flat_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_ne_down_big",
+        1
+      ],
+      [
+        "kindling:deposit_lapis_diamond_ne_up_big",
+        1
+      ]
+    ]
+  }
+}

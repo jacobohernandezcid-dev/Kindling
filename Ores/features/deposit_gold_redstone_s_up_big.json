@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:aggregate_feature": {
+    "description": {
+      "identifier": "kindling:deposit_gold_redstone_s_up_big"
+    },
+    "features": [
+      "kindling:deposit_gold_redstone_s_up_seg0",
+      "kindling:deposit_gold_redstone_s_up_seg1",
+      "kindling:deposit_gold_redstone_s_up_seg2",
+      "kindling:deposit_gold_redstone_s_up_seg3",
+      "kindling:deposit_gold_redstone_s_up_seg4",
+      "kindling:deposit_gold_redstone_s_up_seg5",
+      "kindling:deposit_gold_redstone_s_up_seg6",
+      "kindling:deposit_gold_redstone_s_up_seg7"
+    ]
+  }
+}

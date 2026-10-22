@@ -1,0 +1,20 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "kindling:nether_gold_mother_feature"
+    },
+    "count": 48,
+    "discard_chance_on_air_exposure": 0.02,
+    "replace_rules": [
+      {
+        "places_block": "minecraft:nether_gold_ore",
+        "may_replace": [
+          "minecraft:netherrack",
+          "minecraft:basalt",
+          "minecraft:blackstone"
+        ]
+      }
+    ]
+  }
+}

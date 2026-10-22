@@ -1,0 +1,26 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:raw_iron",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            },
+            {
+              "function": "fortune_enchant",
+              "formula": "ore_drops"
+            },
+            {
+              "function": "explosion_decay"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

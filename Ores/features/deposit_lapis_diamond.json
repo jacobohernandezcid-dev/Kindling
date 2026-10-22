@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_lapis_diamond"
+    },
+    "features": [
+      [
+        "kindling:deposit_lapis_diamond_big",
+        7
+      ],
+      [
+        "kindling:deposit_lapis_diamond_huge",
+        3
+      ]
+    ]
+  }
+}

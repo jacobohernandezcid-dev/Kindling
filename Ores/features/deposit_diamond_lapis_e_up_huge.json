@@ -1,0 +1,12 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:aggregate_feature": {
+    "description": {
+      "identifier": "kindling:deposit_diamond_lapis_e_up_huge"
+    },
+    "features": [
+      "kindling:deposit_diamond_lapis_e_up_shift0",
+      "kindling:deposit_diamond_lapis_e_up_shift1"
+    ]
+  }
+}

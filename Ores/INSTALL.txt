@@ -1,0 +1,67 @@
+Kindling — Ores
+===============
+
+Worldgen only: rare, large, multi-ore deposits that run as long veins,
+tin, rough gems, river gold, surface outcrop slabs, and a light
+Nether pass.
+
+Does not stack extra vanilla ore. It **replaces** vanilla ore features.
+**New chunks only** (old worlds keep old ore).
+
+Requires
+--------
+World experiments:
+  - **Custom biomes** / Creation of custom biomes (feature rules)
+  - **Beta APIs** (rough gem drop script)
+
+Activate **both** Kindling Ores behavior pack and resource pack.
+
+Deposits (v1.1.0)
+-----------------
+Ore no longer comes in many small blobs. About one deposit per 4
+chunks. Each deposit is a long, thick vein running in one direction
+(flat, or dipping up or down), not a ball:
+  - Big  (70%): ~40 blocks long
+  - Huge (30%): ~80 blocks long
+Every deposit has one main ore plus accessory ores. Between deposits
+there are only rare single blocks and small pockets. Total ore in an
+area is about the same as before, just concentrated.
+
+Tuning: edit the CONFIG block in tools/gen-veins.mjs and run
+  node tools/gen-veins.mjs
+It rewrites every deposit_* and pocket_* file and checks references.
+
+Install
+-------
+  %appdata%\Minecraft Bedrock\Users\<id>\games\com.mojang\behavior_packs\KindlingOres\
+  %appdata%\Minecraft Bedrock\Users\<id>\games\com.mojang\resource_packs\KindlingOresRP\
+
+What you should see
+-------------------
+- Long mixed veins, far apart. Stone between them is mostly bare.
+- Deposit types (main ore + accessories, Y range):
+    Iron + coal ............... -24 to 80
+    Coal seam + trace iron .... 0 to 128 (always flat)
+    Copper + tin + trace gold . -16 to 96
+    Gold + redstone ........... -64 to 32
+    Lapis + trace diamond ..... -64 to 16
+    Diamond + lapis (rare) .... -64 to -16
+- Emerald stays mountains-only, as small pockets.
+- Tin drops raw tin (no ingot yet).
+- Diamond, emerald, lapis, redstone ore drop **rough** gems, not
+  finished items. Silk touch still gives the ore.
+- Stone, granite, diorite, andesite → rocks. Deepslate → rubble.
+  Blackstone → chips. End stone → grit. Coal → raw coal.
+  Quartz → rough. Glowstone → shards. Amethyst → rough.
+  Debris → chunk.
+- **No recipes in this pack.** Refining unfinished drops is for a
+  later recipes / alloys pack.
+- River gravel with gold flecks drops extra nuggets.
+- Thin ore slabs on exposed stone (iron, copper, coal, rare gold, tin).
+- Nether: more gold in wastes, more quartz in crimson/warped, less
+  in soul sand valley, a little extra debris in basalt deltas.
+  Quartz still drops vanilla quartz.
+
+Not this pack
+-------------
+Alloys, bronze, steel, gem-tipped tools, pressure oven, climate.

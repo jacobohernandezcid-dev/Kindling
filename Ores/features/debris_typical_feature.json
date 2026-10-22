@@ -1,0 +1,20 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "kindling:debris_typical_feature"
+    },
+    "count": 14,
+    "discard_chance_on_air_exposure": 0.4,
+    "replace_rules": [
+      {
+        "places_block": "minecraft:ancient_debris",
+        "may_replace": [
+          "minecraft:netherrack",
+          "minecraft:basalt",
+          "minecraft:blackstone"
+        ]
+      }
+    ]
+  }
+}

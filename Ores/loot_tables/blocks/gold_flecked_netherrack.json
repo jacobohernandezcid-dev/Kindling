@@ -1,0 +1,76 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "kindling:gold_flecked_netherrack",
+          "conditions": [
+            {
+              "condition": "match_tool",
+              "enchantments": [
+                {
+                  "enchantment": "silk_touch",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "minecraft:netherrack",
+          "conditions": [
+            {
+              "condition": "match_tool",
+              "enchantments": [
+                {
+                  "enchantment": "silk_touch",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ],
+              "inverse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "match_tool",
+          "enchantments": [
+            {
+              "enchantment": "silk_touch",
+              "levels": {
+                "min": 1
+              }
+            }
+          ],
+          "inverse": true
+        }
+      ],
+      "entries": [
+        {
+          "type": "item",
+          "name": "minecraft:gold_nugget",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 0,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

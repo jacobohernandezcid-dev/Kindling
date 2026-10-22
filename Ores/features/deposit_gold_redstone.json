@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_gold_redstone"
+    },
+    "features": [
+      [
+        "kindling:deposit_gold_redstone_big",
+        7
+      ],
+      [
+        "kindling:deposit_gold_redstone_huge",
+        3
+      ]
+    ]
+  }
+}

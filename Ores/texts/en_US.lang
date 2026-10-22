@@ -1,0 +1,36 @@
+pack.name=Kindling Ores
+pack.description=Kindling - veins, tin, rough gems, unfinished mining drops.
+
+item.kindling:raw_tin=Raw Tin
+item.kindling:raw_tin.name=Raw Tin
+item.kindling:rough_diamond=Rough Diamond
+item.kindling:rough_diamond.name=Rough Diamond
+item.kindling:rough_emerald=Rough Emerald
+item.kindling:rough_emerald.name=Rough Emerald
+item.kindling:rough_lapis=Rough Lapis
+item.kindling:rough_lapis.name=Rough Lapis
+item.kindling:rough_redstone=Rough Redstone
+item.kindling:rough_redstone.name=Rough Redstone
+item.kindling:rocks=Rocks
+item.kindling:rocks.name=Rocks
+item.kindling:deepslate_rubble=Deepslate Rubble
+item.kindling:deepslate_rubble.name=Deepslate Rubble
+item.kindling:blackstone_chips=Blackstone Chips
+item.kindling:blackstone_chips.name=Blackstone Chips
+item.kindling:end_grit=End Grit
+item.kindling:end_grit.name=End Grit
+item.kindling:raw_coal=Raw Coal
+item.kindling:raw_coal.name=Raw Coal
+item.kindling:rough_quartz=Rough Quartz
+item.kindling:rough_quartz.name=Rough Quartz
+item.kindling:glowstone_shard=Glowstone Shard
+item.kindling:glowstone_shard.name=Glowstone Shard
+item.kindling:rough_amethyst=Rough Amethyst
+item.kindling:rough_amethyst.name=Rough Amethyst
+item.kindling:debris_chunk=Debris Chunk
+item.kindling:debris_chunk.name=Debris Chunk
+
+tile.kindling:tin_ore=Tin Ore
+tile.kindling:tin_ore.name=Tin Ore
+tile.kindling:deepslate_tin_ore=Deepslate Tin Ore
+tile.kindling:deepslate_tin_ore.name=Deepslate Tin Ore

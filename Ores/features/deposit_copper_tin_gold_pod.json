@@ -1,0 +1,58 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:weighted_random_feature": {
+    "description": {
+      "identifier": "kindling:deposit_copper_tin_gold_pod"
+    },
+    "features": [
+      [
+        "kindling:deposit_copper_tin_gold_host_s",
+        72
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_s_1",
+        168
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_s_2",
+        18
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_s_3",
+        42
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_host_m",
+        96
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_m_1",
+        224
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_m_2",
+        24
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_m_3",
+        56
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_host_l",
+        72
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_l_1",
+        168
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_l_2",
+        18
+      ],
+      [
+        "kindling:deposit_copper_tin_gold_pod_l_3",
+        42
+      ]
+    ]
+  }
+}

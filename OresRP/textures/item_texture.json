@@ -1,0 +1,48 @@
+{
+  "resource_pack_name": "kindling_ores",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "raw_tin": {
+      "textures": "textures/items/raw_tin"
+    },
+    "rough_diamond": {
+      "textures": "textures/items/rough_diamond"
+    },
+    "rough_emerald": {
+      "textures": "textures/items/rough_emerald"
+    },
+    "rough_lapis": {
+      "textures": "textures/items/rough_lapis"
+    },
+    "rough_redstone": {
+      "textures": "textures/items/rough_redstone"
+    },
+    "rocks": {
+      "textures": "textures/items/rocks"
+    },
+    "deepslate_rubble": {
+      "textures": "textures/items/deepslate_rubble"
+    },
+    "blackstone_chips": {
+      "textures": "textures/items/blackstone_chips"
+    },
+    "end_grit": {
+      "textures": "textures/items/end_grit"
+    },
+    "raw_coal": {
+      "textures": "textures/items/raw_coal"
+    },
+    "rough_quartz": {
+      "textures": "textures/items/rough_quartz"
+    },
+    "glowstone_shard": {
+      "textures": "textures/items/glowstone_shard"
+    },
+    "rough_amethyst": {
+      "textures": "textures/items/rough_amethyst"
+    },
+    "debris_chunk": {
+      "textures": "textures/items/debris_chunk"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": "1.21.40",
+  "minecraft:block": {
+    "description": {
+      "identifier": "kindling:tin_ore",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/tin_ore.json",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 3.0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+      "minecraft:map_color": "#8a9aa6",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "tin_ore",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:geometry": "minecraft:geometry.full_block",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:minecraft:iron_pick_diggable": {}
+    }
+  }
+}

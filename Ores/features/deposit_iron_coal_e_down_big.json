@@ -1,0 +1,18 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:aggregate_feature": {
+    "description": {
+      "identifier": "kindling:deposit_iron_coal_e_down_big"
+    },
+    "features": [
+      "kindling:deposit_iron_coal_e_down_seg0",
+      "kindling:deposit_iron_coal_e_down_seg1",
+      "kindling:deposit_iron_coal_e_down_seg2",
+      "kindling:deposit_iron_coal_e_down_seg3",
+      "kindling:deposit_iron_coal_e_down_seg4",
+      "kindling:deposit_iron_coal_e_down_seg5",
+      "kindling:deposit_iron_coal_e_down_seg6",
+      "kindling:deposit_iron_coal_e_down_seg7"
+    ]
+  }
+}

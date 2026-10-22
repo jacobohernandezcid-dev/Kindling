@@ -1,0 +1,53 @@
+{
+  "format_version": "1.21.40",
+  "minecraft:block": {
+    "description": {
+      "identifier": "kindling:tin_ore_slab",
+      "menu_category": {
+        "category": "nature"
+      }
+    },
+    "components": {
+      "minecraft:loot": "loot_tables/blocks/tin_ore_slab.json",
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 2.0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+      "minecraft:collision_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          8,
+          16
+        ]
+      },
+      "minecraft:selection_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          8,
+          16
+        ]
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "tin_ore_slab",
+          "render_method": "opaque"
+        }
+      },
+      "minecraft:geometry": "geometry.kindling.ore_slab",
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "tag:minecraft:iron_pick_diggable": {}
+    }
+  }
+}

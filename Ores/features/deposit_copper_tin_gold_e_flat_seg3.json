@@ -1,0 +1,34 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:scatter_feature": {
+    "description": {
+      "identifier": "kindling:deposit_copper_tin_gold_e_flat_seg3"
+    },
+    "places_feature": "kindling:deposit_copper_tin_gold_pod",
+    "distribution": {
+      "iterations": 5,
+      "coordinate_eval_order": "xzy",
+      "x": {
+        "distribution": "uniform",
+        "extent": [
+          -4,
+          0
+        ]
+      },
+      "y": {
+        "distribution": "uniform",
+        "extent": [
+          -1,
+          1
+        ]
+      },
+      "z": {
+        "distribution": "uniform",
+        "extent": [
+          -2,
+          2
+        ]
+      }
+    }
+  }
+}
