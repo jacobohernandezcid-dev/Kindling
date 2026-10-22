@@ -1,0 +1,37 @@
+{
+  "namespace": "hud",
+
+  "centered_gui_elements_at_bottom_middle": {
+    "size": [180, 72]
+  },
+  "centered_gui_elements_at_bottom_middle/heart_rend": {
+    "offset": [-1, -49]
+  },
+  "centered_gui_elements_at_bottom_middle/hunger_rend": {
+    "offset": [180, -49]
+  },
+  "centered_gui_elements_at_bottom_middle/armor_rend": {
+    "offset": [-1, -49]
+  },
+  "centered_gui_elements_at_bottom_middle/horse_heart_rend_0": {
+    "offset": [180, -65]
+  },
+  "centered_gui_elements_at_bottom_middle/horse_heart_rend_1": {
+    "offset": [180, -59]
+  },
+  "centered_gui_elements_at_bottom_middle/bubbles_rend_0": {
+    "offset": [180, -59]
+  },
+  "centered_gui_elements_at_bottom_middle/bubbles_rend_1": {
+    "offset": [180, -79]
+  },
+
+  "root_panel/hud_actionbar_text_area": {
+    "factory": {
+      "name": "hud_actionbar_text_factory",
+      "control_ids": {
+        "hud_actionbar_text": "@kindling.stamina_hud"
+      }
+    }
+  }
+}

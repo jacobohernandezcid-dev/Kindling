@@ -1,0 +1,36 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Kindling Body",
+    "description": "Kindling - player stamina, hunger, rest, and danger.",
+    "uuid": "fb49b403-7a58-4a3e-ae97-dec9ed7fe7f4",
+    "version": [1, 0, 16],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "Kindling Body data",
+      "type": "data",
+      "uuid": "d2346d54-7c9c-4aa1-93fc-059ddfff32b5",
+      "version": [1, 0, 16]
+    },
+    {
+      "description": "Kindling Body scripts",
+      "type": "script",
+      "language": "javascript",
+      "uuid": "e9eeed07-91a6-403c-aca5-a3321ae80120",
+      "version": [1, 0, 16],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.1.0"
+    }
+  ],
+  "metadata": {
+    "authors": ["Kindling"],
+    "product_type": "addon"
+  }
+}

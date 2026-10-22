@@ -1,0 +1,22 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Kindling Body",
+    "description": "Kindling - stamina XP bar and HUD.",
+    "uuid": "3f7c1a90-6e2b-4d5c-a8f1-9b0c2d4e6f80",
+    "version": [1, 0, 16],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "Kindling Body resources",
+      "type": "resources",
+      "uuid": "4a8d2b01-7f3c-4e6d-b9a2-0c1d3e5f7081",
+      "version": [1, 0, 16]
+    }
+  ],
+  "metadata": {
+    "authors": ["Kindling"],
+    "product_type": "addon"
+  }
+}

@@ -1,0 +1,82 @@
+Kindling — Body
+===============
+
+This is the player module of **Kindling** (a survival suite, not a
+"better Minecraft" overhaul). Later packs can sit beside it:
+Beasts, Hearth, Conditions, and so on.
+
+What Body does
+--------------
+Stamina, hunger lock, insomnia, hidden attributes, danger
+(kills make villagers, animals, and wolves treat you as a threat).
+No new items, mobs, foods, or tomes.
+
+Install
+-------
+Minecraft for Windows stores packs here (not the old Packages folder).
+Put the behavior pack in **behavior_packs** (not development_):
+
+  %appdata%\Minecraft Bedrock\Users\<your-id>\games\com.mojang\behavior_packs\KindlingBody\
+
+Put the resource pack (HUD) in **resource_packs**:
+
+  %appdata%\Minecraft Bedrock\Users\<your-id>\games\com.mojang\resource_packs\KindlingBodyRP\
+
+The resource pack is the `BodyRP` folder (manifest.json at its root).
+
+2. Create or edit a world.
+3. Experiments: enable **Beta APIs** if the pack asks for them.
+4. World → Behavior packs → add **Kindling Body**.
+5. World → Resource packs → add **Kindling Body**.
+6. Survival / Adventure. Creative is ignored.
+7. Re-enter the world. Chat should say "Kindling Body scripts running".
+
+If a world already had "New Player" enabled, this is the same pack
+(same UUID). You should not need to add it twice.
+
+What you should feel
+--------------------
+- Spawn is vanilla Steve while full, fed, and rested.
+- A second XP-style bar sits above the real XP bar (stamina). Hearts
+  and hunger sit above that. Bright yellow = remaining, dark yellow =
+  spent, black = hunger-locked.
+- Walk / analog nudge recovers slowly. Keyboard W is a run (drains).
+- Wading shallow water (feet on the bottom) costs more than land, less than a swim.
+- Sprint, swim, jump, mine, and hit drain faster than regen.
+- Food above 75%: no lock. Empty food: at most 75% locked (25% left).
+- Hearts do not drip from hunger. At 0 food, ½ heart per Minecraft day.
+- Hearts regen only when the food bar is full and stamina is full.
+- Skip nights or take insomnia: strength, speed, stamina max, and regen
+  drop (never to 0). Phantoms are turned off by this pack.
+- Stamina 0: crawl, no mine/attack, sink in water.
+- Danger rises when you kill (villagers more than animals). Villagers,
+  traders, and passive mobs keep away (around danger 50). At 75+
+  passives flee; at 100 they run hard. Hostiles (drowned, zombies)
+  never flee from danger. Hold a mob's food to still lure it.
+  Tamed mobs do not flee. Wolves go on alert at high danger.
+  Danger fades slowly, and sleep helps.
+
+Test commands
+-------------
+`!k` is a Minecraft cheat prefix, so it will not work. Use:
+
+  /kl:get
+  /kl:set danger 50
+  /kl:add strength 10
+  /kl:set fire 0.5
+  /kl:reset
+  /kl:help
+
+Or chat (no slash):
+
+  .k get
+  .k set danger 50
+  .k add agility 5
+  .k reset
+
+Stats: strength agility regen vitality fire heat cold poison danger stamina insomnia
+Resists are 0 to 0.9. Danger is 0 to 100.
+
+Tweaks
+------
+Edit `scripts/config.js` (costs, regen, lock %, etc.).

@@ -1,0 +1,37 @@
+Kindling — Climate (seasons cycle)
+==================================
+
+Heat / cold by biome and time, plus a simple year of seasons.
+
+Requires
+--------
+**Beta APIs**. Soft-works with **Kindling Body** (heat/cold resists + insomnia).
+
+Seasons (7 Minecraft days each)
+-------------------------------
+- **Spring** — mild
+- **Summer** — longer days (time warp), more heat; mild warmth outside deserts
+- **Autumn** — longer nights a bit; leaf-fall particles; colder rain
+- **Winter** — longer nights; more cold; snow layers in temperate + cold biomes
+  (not deserts). Temperate biomes get night chill.
+
+Also
+----
+- Midday heat spike / midnight cold spike
+- **Insomnia** (Body): skipped nights make cold build and midnight spike worse;
+  sleep clears Body insomnia and eases Climate nights again
+- Nether: mild heat (unchanged idea)
+
+Not included (engine limits)
+----------------------------
+Sun path, real leaf recolor, forcing snow weather in deserts.
+
+Check
+-----
+  .kl climate
+  .kl season
+
+Install
+-------
+  behavior_packs\KindlingClimate\
+  resource_packs\KindlingClimateRP\

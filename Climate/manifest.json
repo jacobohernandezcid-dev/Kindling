@@ -1,0 +1,36 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Kindling Climate",
+    "description": "Kindling - seasons, heat, cold. Fun day cycle.",
+    "uuid": "a7c8e0f2-3b4d-4e5f-9a1b-6c8d0e2f4a5b",
+    "version": [1, 1, 0],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "description": "Kindling Climate data",
+      "type": "data",
+      "uuid": "b8d9f1a3-4c5e-4f6a-ab2c-7d9e1f3a5b6c",
+      "version": [1, 1, 0]
+    },
+    {
+      "description": "Kindling Climate scripts",
+      "type": "script",
+      "language": "javascript",
+      "uuid": "c9e0a2b4-5d6f-4a7b-bc3d-8e0f2a4b6c7d",
+      "version": [1, 1, 0],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.1.0"
+    }
+  ],
+  "metadata": {
+    "authors": ["Kindling"],
+    "product_type": "addon"
+  }
+}
